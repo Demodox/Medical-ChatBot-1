@@ -1,90 +1,81 @@
-# 🩺 Medical-ChatBot-1
+# 🩺 Medical Chatbot with FAISS Memory & LLM Integration
 
-## 📌 Overview
-**Medical-ChatBot-1** is an AI-powered medical chatbot built in Python.  
-It integrates the **Google Gemini API** with a **FAISS-based vector store** for semantic memory retrieval, enabling the bot to provide **context-aware medical responses**.  
-The chatbot stores conversation history in a vector database and uses it to deliver relevant, coherent, and medically informed replies.
+A **medical chatbot** built in **Python** that uses **FAISS vector storage** for memory and integrates with an **LLM (Google Gemini / any LLM API)** to provide accurate, context-aware responses to medical queries.
 
 ---
 
-## 🖼️ System Architecture
-
-      ┌───────────────────────────┐
-      │      User Query (Text)     │
-      └──────────────┬─────────────┘
-                     │
-                     ▼
-          ┌────────────────────┐
-          │  Medical ChatBot    │
-          │   (medibot.py)      │
-          └─────────┬───────────┘
-                    │
-    ┌───────────────┼────────────────┐
-    │                               │
-    ▼                               ▼
-┌───────────────────┐ ┌─────────────────────┐
-│ Memory Retrieval │ │ Google Gemini LLM │
-│ (FAISS Vector DB)│ │ (via API in .env) │
-└─────────┬─────────┘ └─────────┬───────────┘
-│ │
-└──────────────┬─────────────┘
-▼
-┌────────────────────┐
-│ Context-Aware │
-│ Medical Response │
-└────────────────────┘
----
-
-## 📂 Repository Structure
-data/ # Medical knowledge base or conversation datasets
-vectorStore/db_faiss/ # FAISS-based vector database for semantic memory
-.env # Environment variables (e.g., Gemini API key)
-.gitignore # Files to ignore in Git version control
-Connect_MemoryWIthLLM.py# Connects FAISS memory with Gemini LLM
-medibot.py # Main chatbot application
-memory.py # Memory management and retrieval logic
-requirements.txt # Python dependencies
-
+## 🚀 Features
+- **Medical Q&A**: Ask medical-related questions and get AI-generated responses.
+- **Vector Search with FAISS**: Efficient semantic search over stored medical data.
+- **LLM Integration**: Connects with Google Gemini or other LLMs.
+- **Persistent Memory**: Stores embeddings for quick future retrieval.
+- **Extensible**: Easily add new datasets, PDFs, or text documents.
+- **Environment Safety**: API keys stored securely in `.env` (not committed to Git).
 
 ---
 
-## ✨ Features
-- **Google Gemini API Integration** for intelligent medical text generation.
-- **FAISS Vector Store** for semantic search and contextual retrieval.
-- **Context-Aware Conversations** using stored memory.
-- **Environment-Based Configuration** for secure setup.
-- **Easily Extendable** to UI frameworks or extra datasets.
+## 📂 Project Structure
+```plaintext
+Medical-ChatBot-1/
+├── data/                        # (optional) medical datasets, documents, PDFs, etc.
+├── vectorStore/
+│   └── db_faiss/                 # FAISS index files and metadata
+├── Connect_MemoryWIthLLM.py      # Script to connect memory (FAISS) with the LLM
+├── medibot.py                    # Main chatbot application / entry point
+├── memory.py                     # Memory management: embeddings, store, retrieval helpers
+├── requirements.txt              # Python package dependencies
+├── .env                          # Environment variables (GOOGLE_API_KEY here) - DO NOT COMMIT
+├── .gitignore                    # Files & folders to ignore in Git
+└── README.md                     # Project documentation (this file)
 
----
+```
+## ⚙️ Installation & Setup
 
-## ⚙️ Setup & Installation
-
-### 1️⃣ Prerequisites
-- Python **3.8+**
-- Google Gemini API Key ([Get it here](https://ai.google.dev/))
-
----
-
-### 2️⃣ Clone the Repository
+### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/Demodox/Medical-ChatBot-1.git
+git clone https://github.com/your-username/Medical-ChatBot-1.git
 cd Medical-ChatBot-1
 
-### 3️⃣ Create a Virtual Environment (Recommended)
+```
+### 2️⃣ Create & Activate Virtual Environment
+```bash
+# Create environment
 python -m venv venv
-# Activate the virtual environment
-# Windows:
+
+# Activate (Windows)
 venv\Scripts\activate
-# Mac/Linux:
+
+# Activate (Mac/Linux)
 source venv/bin/activate
-4️⃣ Install Dependencies
+
+```
+3️⃣ Install Dependencies
+```bash
 pip install -r requirements.txt
+```
+4️⃣ Add your API keys
+Create a .env file in the project root and add:
+```bash
+GEMINI_API_KEY=your_google_gemini_api_key_here
+HUGGINGFACE_API_KEY=your_hugging_face_api_key_here
 
-5️⃣ Configure .env File
-GOOGLE_API_KEY=your_gemini_api_key_here
-Run the Main Chatbot
-python medibot.py
 
-Connect Memory with LLM
-python Connect_MemoryWIthLLM.py
+```
+💻 Running the ChatBot
+```bash
+streamlit run medibot.py 
+```
+🛠 Technologies Used
+Python 3.x
+
+Streamlit (Web UI)
+
+SentenceTransformers (Vector embeddings)
+
+FAISS / Similarity Search
+
+Pandas & NumPy (Data processing)
+
+
+
 
